@@ -1,0 +1,81 @@
+//{ Driver Code Starts
+// Initial template for C++
+
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+// User function template for C++
+
+class Solution {
+  public:
+    vector<int> filterByDigits(const vector<int>& arr) 
+    {
+        // code here
+        int n = arr.size();
+        unordered_set<int> s = {1,2,3};
+        vector<int> ans;
+        for(int num : arr)
+        {
+            int i = num;
+            bool valid = true;
+            
+            while(i>0)
+            {
+                int digit = i%10; // checking all digits
+                if(s.find(digit) == s.end())
+                {
+                    valid = false;
+                    break;
+                }
+                
+                i = i/10;
+            }
+            
+            if(valid)
+            {
+                ans.push_back(num);
+            }
+            
+        }
+        
+        
+        if(ans.empty())
+        {
+            return { };
+        }
+        
+        return ans;
+    }
+};
+
+
+//{ Driver Code Starts.
+
+int main() {
+    int t;
+    cin >> t;
+    cin.ignore(); // Ignore the newline character after t
+    while (t--) {
+        vector<int> arr;
+        string input;
+
+        getline(cin, input); // Read the entire line for the array elements
+        stringstream ss(input);
+        int number;
+        while (ss >> number) {
+            arr.push_back(number);
+        }
+
+        Solution ob;
+        vector<int> result = ob.filterByDigits(arr);
+        for (int x : result) {
+            cout << x << " ";
+        }
+        cout << "\n";
+    }
+    return 0;
+}
+
+// } Driver Code Ends
