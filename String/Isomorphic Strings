@@ -1,0 +1,90 @@
+//{ Driver Code Starts
+// C++ program to check if two strings are isomorphic
+
+
+#include<bits/stdc++.h>
+
+
+using namespace std;
+#define MAX_CHARS 256
+
+// } Driver Code Ends
+class Solution
+{
+    public:
+    //Function to check if two strings are isomorphic.
+    bool areIsomorphic(string s1, string s2)
+    {
+        
+        // Your code here
+        int n = s1.size();
+        int m = s2.size();
+        
+        if(n != m) //not equal sizes
+        {
+            return false;
+        }
+        
+        unordered_map<char,char> mp1;
+        unordered_map<char,char> mp2;
+        
+    
+        for(int i=0;i<n;i++)
+        {
+            char c1 = s1[i];
+            char c2 = s2[i];
+            
+            if(mp1.count(c1)) //if empty map to each other
+            {
+                if(mp1[c1]!=c2)
+                {
+                    return false; //if exits and not equal
+                }
+            }
+            else
+            {
+                mp1[c1] = c2; // if not exists
+            }
+            
+            if(mp2.count(c2)) //if empty map to each other
+            {
+                if(mp2[c2]!=c1)
+                {
+                    return false; //if exits and not equal
+                }
+            }
+            else
+            {
+                mp2[c2] = c1; // if not exists
+            }
+            
+        }
+        
+        return true;
+    
+        
+        
+
+    }
+};
+
+//{ Driver Code Starts.
+
+// Driver program
+int main()
+{
+    int t;
+    cin>>t;
+    string s1,s2;
+    while (t--) {
+        cin>>s1;
+        cin>>s2;
+        Solution obj;
+        cout<<obj.areIsomorphic(s1,s2)<<endl;
+    
+cout << "~" << "\n";
+}
+    
+    return 0;
+}
+// } Driver Code Ends
