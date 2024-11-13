@@ -1,0 +1,139 @@
+//{ Driver Code Starts
+#include <bits/stdc++.h>
+
+using namespace std;
+
+
+// } Driver Code Ends
+
+class Node
+{
+    public:
+        int data;
+        Node* next;
+        
+        Node(int n)
+        {
+            this->data = n;
+            this->next = NULL;
+        }
+};
+
+class twoStacks 
+{
+    Node* top1;
+    Node* top2;
+  public:
+
+    twoStacks() 
+    {
+        top1 = NULL;
+        top2 = NULL;
+    }
+
+    // Function to push an integer into the stack1.
+    void push1(int x) 
+    {
+        Node* temp1 = new Node(x);
+        
+        // if(!temp1)
+        // {
+        //     return;
+        // }
+        
+        
+        temp1->next = top1;
+        top1 = temp1;
+    }
+
+    // Function to push an integer into the stack2.
+    void push2(int x) 
+    {
+        Node* temp2 = new Node(x);
+        
+        // if(!temp2)
+        // {
+        //     return;
+        // }
+        
+       
+        temp2->next = top2;
+        top2 = temp2;
+    }
+
+    // Function to remove an element from top of the stack1.
+    int pop1() 
+    {
+        Node* temp1;
+        if(top1 == NULL)
+        {
+            return -1;
+        }
+        else
+        {
+            temp1 = top1;
+            int popped = top1->data;
+            top1 = top1->next;
+            delete temp1;
+            return popped;
+        }
+    }
+
+    // Function to remove an element from top of the stack2.
+    int pop2() 
+    {
+        Node* temp2;
+        if(top2 == NULL)
+        {
+            return -1;
+        }
+        else
+        {
+            temp2 = top2;
+            int popped = top2->data;
+            top2 = top2->next;
+            delete temp2;
+            return popped;
+        }
+    }
+};
+
+
+//{ Driver Code Starts.
+
+int main() {
+
+    int T;
+    cin >> T;
+    while (T--) {
+        twoStacks *sq = new twoStacks();
+
+        int Q;
+        cin >> Q;
+        while (Q--) {
+            int stack_no;
+            cin >> stack_no;
+            int QueryType = 0;
+            cin >> QueryType;
+
+            if (QueryType == 1) {
+                int a;
+                cin >> a;
+                if (stack_no == 1)
+                    sq->push1(a);
+                else if (stack_no == 2)
+                    sq->push2(a);
+            } else if (QueryType == 2) {
+                if (stack_no == 1)
+                    cout << sq->pop1() << " ";
+                else if (stack_no == 2)
+                    cout << sq->pop2() << " ";
+            }
+        }
+
+        cout << endl;
+        cout << "~" << endl;
+    }
+}
+
+// } Driver Code Ends
