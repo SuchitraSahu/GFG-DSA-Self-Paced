@@ -58,33 +58,24 @@ public:
 //Function to push an element into stack using two queues.
 void QueueStack :: push(int x)
 {
-        // Your Code
-        // while(q1.empty() == false)
-        // {
-        //     q2.push(q1.front());
-        //     q1.pop();
-        // }
-        
-        // swap(q1,q2);
-        q1.push(x);
+    q1.push(x);
 }
 
 //Function to pop an element from stack using two queues. 
 int QueueStack :: pop()
-{
-        // Your Code     
-        if(q1.empty())
-        {
-            return -1;
-        }
-        while(q1.size() != 1) // leave 1st elem
-        {
-            q2.push(q1.front());
-            q1.pop();
-        }
-        
-        int topElem = q1.front();
-        q1.pop();
-        swap(q1,q2);
-        return topElem;
+{   
+    if(q1.empty())
+    {
+        return -1;
+    }
+    while(q1.size() != 1) // leave 1st elem
+    {
+        q2.push(q1.front()); //transfer all but last elem to q2
+        q1.pop(); //remove all from q1
+    }
+    
+    int topElem = q1.front(); //get last elem that is top of stack now
+    q1.pop(); //remove from q1
+    swap(q1,q2); //swap em so q1 becomes main queue
+    return topElem; //return top
 }
