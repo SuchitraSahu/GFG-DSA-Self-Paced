@@ -1,0 +1,91 @@
+//{ Driver Code Starts
+// Initial Template for C++
+
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+// Function to erase the element from specified position X in deque.
+void eraseAt(deque<int> &deq, int X) 
+{
+    int n = deq.size();
+    if(X<0 || n<X)
+    {
+        return;
+    }
+    deq.erase(deq.begin() + X);
+}
+
+// Function to erase the elements in range start (inclusive), end (exclusive).
+void eraseInRange(deque<int> &deq, int start, int end) 
+{
+    int n = deq.size();
+    if(start<0 || n<end || start>=end)
+    {
+        return;
+    }
+    auto it1 = deq.begin()+start;
+    auto it2 = deq.begin()+end;
+    
+    deq.erase(it1,it2);
+}
+
+// Function to erase all the elements in the deque.
+void eraseAll(deque<int> &deq) 
+{
+    deq.clear();
+}
+
+
+//{ Driver Code Starts.
+
+int main() {
+    int t;
+    cin >> t;
+    cin.ignore();
+    while (t--) {
+        string str;
+        getline(cin, str);
+
+        stringstream ss(str);
+        deque<int> deq;
+        int num;
+        while (ss >> num) {
+            deq.push_back(num);
+        }
+        string str1;
+        getline(cin, str1);
+
+        stringstream ss1(str1);
+        vector<int> op;
+        int num1;
+        while (ss1 >> num1) {
+            op.push_back(num1);
+        }
+        int eraseQuery = op[0];
+
+        if (eraseQuery == 1) {
+            int pos = op[1];
+            eraseAt(deq, pos);
+        } else if (eraseQuery == 2) {
+            int start, end;
+            start = op[1];
+            end = op[2];
+            eraseInRange(deq, start, end);
+        } else if (eraseQuery == 3) {
+            eraseAll(deq);
+        }
+
+        // cin.ignore();
+        if (deq.empty())
+            cout << "Empty";
+        else {
+            for (auto itr = deq.begin(); itr != deq.end(); itr++)
+                cout << *itr << " ";
+        }
+        cout << endl;
+    }
+    return 0;
+}
+// } Driver Code Ends
