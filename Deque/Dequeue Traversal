@@ -1,0 +1,43 @@
+//{ Driver Code Starts
+// Initial Template for C++
+
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+// User function Template for C++
+
+// Function to traverse the Deque and print the elements of it.
+void printDeque(deque<int> d) 
+{
+    // your code here
+    for(auto i = d.begin();i!=d.end();i++)
+    {
+        cout << *i << " ";
+    }
+    cout<< endl;
+}
+
+
+//{ Driver Code Starts.
+
+int main() {
+    int t;
+    cin >> t;
+    cin.ignore();
+    while (t--) {
+        string str;
+        getline(cin, str);
+
+        stringstream ss(str);
+        deque<int> Deq;
+        int num;
+        while (ss >> num) {
+            Deq.push_back(num);
+        }
+        printDeque(Deq);
+    }
+}
+
+// } Driver Code Ends
